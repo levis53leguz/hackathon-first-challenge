@@ -1,0 +1,324 @@
+<!-- Tells the browser this is an HTML5 document --> 
+<!DOCTYPE html>
+
+<!-- Set the language of the document to English -->
+<html lang="en">
+
+<head>
+  <!-- Define character encoding -->
+  <meta charset="UTF-8" />
+
+  <!-- Set viewport for responsive design on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Page title shown in the browser tab -->
+  <title>Elvis Kessy Portfolio Website</title>
+
+  <!-- Internal CSS styles -->
+  <style>
+    /* Apply box-sizing to all elements and remove default margin and padding */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Body styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Set a clean font */
+      background: linear-gradient(to bottom right, rgb(104, 94, 96), rgb(164, 154, 194)); /* Soft gradient background */
+      color: #fff7f7; /* Text color */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      padding: 2rem; /* Padding around content */
+    }
+
+    /* Header section with flex layout and gradient background */
+    header {
+      display: flex; /* Align image and info in a row */
+      align-items: center; /* Vertically center items */
+      gap: 2rem; /* Space between items */
+      background: linear-gradient(to right, rgba(54, 117, 168, 0.048), #53869e); /* Gradient background */
+      color: rgb(212, 210, 219); /* Text color */
+      border-radius: 90px; /* Rounded corners */
+      padding: 15rem; /* Large padding */
+      margin-bottom: 2rem; /* Space below header */
+      animation: fadeInDown 1s ease-in-out; /* Entry animation */
+    }
+
+    /* Style for the profile image */
+    .profile-pic {
+      width: 300px; /* Image width */
+      height: 300px; /* Image height */
+      object-fit: cover; /* Fill container without distortion */
+      border-radius: 50%; /* Make image circular */
+      border: 2px solid white; /* White border around image */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Soft shadow */
+      transition: transform 0.3s ease; /* Hover animation */
+    }
+
+    /* Zoom effect when hovered */
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
+
+    /* Container for profile name and description */
+    .profile-info {
+      flex: 1; /* Take remaining space */
+    }
+
+    .profile-info h1 {
+      font-size: 2.5rem; /* Large name font */
+    }
+
+    .profile-info p {
+      font-size: 1.2rem; /* Description font */
+    }
+
+    /* Main grid container for cards */
+    .dashboard {
+      display: grid; /* Use CSS Grid */
+      grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      grid-auto-rows: minmax(200px, auto); /* Row height */
+      gap: 2rem; /* Space between cards */
+      animation: fadeIn 1.2s ease-in-out; /* Entry animation */
+    }
+
+    /* Each card block styling */
+    .card {
+      background-color: rgba(7, 21, 34, 0.815); /* Clean card base */
+      padding: 5rem; /* Inner spacing */
+      border-radius: 75px; /* Rounded corners */
+      box-shadow: 0 8px 24px rgba(102, 92, 92, 0.15); /* Shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover animation */
+      font-size: 1.5rem; /* Text size */
+      display: flex; /* Flex for vertical centering */
+      flex-direction: column;
+      justify-content: center;
+
+      /* Animation */
+      animation: cardFadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Staggered animation delays */
+    .dashboard > .card:nth-child(1) { animation-delay: 0.1s; }
+    .dashboard > .card:nth-child(2) { animation-delay: 0.2s; }
+    .dashboard > .card:nth-child(3) { animation-delay: 0.3s; }
+    .dashboard > .card:nth-child(4) { animation-delay: 0.4s; }
+    .dashboard > .card:nth-child(5) { animation-delay: 0.5s; }
+    .dashboard > .card:nth-child(6) { animation-delay: 0.6s; }
+    .dashboard > .card:nth-child(7) { animation-delay: 0.7s; }
+    .dashboard > .card:nth-child(8) { animation-delay: 0.8s; }
+    .dashboard > .card:nth-child(9) { animation-delay: 0.9s; }
+
+    /* Slight scale and stronger shadow on hover */
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow:
+        0 16px 40px rgba(67, 180, 231, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.2);
+      background-color: rgba(15, 31, 52, 0.9);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+      cursor: pointer;
+    }
+
+    /* Contact card hover with distinct glow */
+    .contact-card:hover {
+      box-shadow:
+        0 20px 50px rgba(56, 168, 104, 0.6),
+        0 12px 36px rgba(0, 0, 0, 0.25);
+      background-color: rgba(20, 60, 35, 0.9);
+      transform: translateY(-12px) scale(1.06);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+      cursor: pointer;
+    }
+
+    .card h2 {
+      color: rgba(255, 255, 255, 0.938); /* headings in violet */
+      margin-bottom: 1rem; /* Space below heading */
+    }
+
+    /* General link styling */
+    a {
+      color: #d8e2e9f8; /* Deep pink links */
+      text-decoration: none; /* No underline */
+    }
+
+    /* Special wide card for contact */
+    .contact-card {
+      grid-column: span 2; /* Stretch across two columns */
+      background: linear-gradient(to bottom, rgb(106, 111, 114), rgba(78, 112, 122, 0.322)); /* Gradient background */
+    }
+
+    /* Footer styling */
+    footer {
+      text-align: center; /* Center content */
+      margin-top: 3rem; /* Space above footer */
+      padding: 1rem; /* Padding inside */
+      background: rgba(47, 61, 70, 0.11); /* Background color */
+      color: rgba(26, 39, 43, 0.247); /* Text color */
+      border-radius: 12px; /* Rounded corners */
+      animation: fadeInUp 1s ease-in-out; /* Slide-up animation */
+    }
+
+    /* Fade-in animation for cards */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header animation from top */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer animation from bottom */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card-specific fade-up animation */
+    @keyframes cardFadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Form field styles */
+    form input, form textarea {
+      width: 100%; /* Full width */
+      padding: 0.7rem; /* Inner space */
+      margin: 0.6rem 0; /* Space between inputs */
+      border: 1px solid #8ba09e67; /* Light border */
+      border-radius: 8px; /* Rounded corners */
+      font-size: 1rem; /* Text size */
+    }
+
+    /* Submit button style */
+    button[type="submit"] {
+      background-color: rgba(21, 51, 50, 0.315); /* Button color */
+      color: rgb(248, 251, 253); /* Text color */
+      padding: 0.8rem 1.4rem; /* Size */
+      border: none;
+      border-radius: 8px; /* Rounded corners */
+      cursor: pointer; /* Pointer on hover */
+      transition: background-color 0.3s ease; /* Smooth color change */
+      font-size: 1rem;
+    }
+
+    /* Button hover effect */
+    button[type="submit"]:hover {
+      background-color: #34a2b162;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header section with profile picture and intro -->
+  <header>
+    <!-- Profile image (make sure file exists) -->
+    <div class="profile-pic">
+      <img src="me.jpg" alt="Elvis's Photo" class="profile-pic">
+    </div>
+
+    <!-- Profile name and role -->
+    <div class="profile-info">
+      <h1>Elvis Kessy</h1>
+      <p>Machine Learning Engineer & Creative Problem Solver</p>
+    </div>
+  </header>
+
+  <!-- Dashboard: Grid of profile cards -->
+  <div class="dashboard">
+
+    <!-- About card -->
+    <div class="card">
+      <h2>About Me</h2>
+      <p>Aspiring developer majoring in Mechanical Engineering at University of Dar es Salaam with a passionfor AI, machine learning and web development. Driven to innovate, learn, and share modern tech solutions.</p>
+    </div>
+
+    <!-- Programming languages -->
+    <div class="card">
+      <h2>Programming Languages</h2>
+      <p>Python, JavaScript, C, C++</p>
+    </div>
+
+    <!-- Education background -->
+    <div class="card">
+      <h2>Education Background</h2>
+  <p><strong>Lugoba Secondary School</strong><br>
+  Advanced Certificate of Secondary Education (2021 – 2023)</p>
+
+  <p><strong>Azania Secondary School</strong><br>
+  Certificate of Secondary Education (2017 – 2020)</p>
+
+  <p><strong>Holy Cross Primary School</strong><br>
+  Primary Education (2009 – 2016)</p>
+
+  <p><strong>Bright Day Care</strong><br>
+  Early Childhood Education (2007 – 2009)</p>
+    </div>
+
+    <!-- Interests and activities -->
+<div class="card">
+  <h2>Interests</h2>
+  <section id="interests">
+    <ul class="interests-list">
+      <li>🔍 Exploring <strong>Machine Learning</strong> and <strong>Artificial Intelligence</strong></li>
+      <li>💻 Building modern and responsive <strong>web applications</strong></li>
+      <li>🧠 Understanding how smart systems think and learn</li>
+      <li>🛠 Combining engineering with <strong>software development</strong> for real-world impact</li>
+      <li>🌐 Sharing web development experiences and tech ideas</li>
+    </ul>
+  </section>
+</div>
+
+  <!-- Languages spoken -->
+    <div class="card">
+      <h2>Languages</h2>
+      <p>English and Swahili</p>
+    </div>
+
+    <!-- Certificates and achievements -->
+    <div class="card">
+      <h2>Certificates</h2>
+      <p>JKT, Zydii</p>
+    </div>
+
+    <!-- CV download -->
+    <div class="card">
+      <h2>CV</h2>
+      <p><a href="Elvis_Kessy_CV_Table_Format.pdf" download>Download My CV</a></p>
+    </div>
+
+    <!-- Projects placeholder -->
+    <div class="card">
+      <h2>Projects</h2>
+      <p>Coming Soon: Projects in machine learning and artificial intelligence.</p>
+    </div>
+
+    <!-- Contact information and message form -->
+    <div class="card contact-card">
+      <h2>Contact Info</h2>
+      <p>📞 +255 680 076 540<br>📧 elviskessy53@gmail.com<br>🔗 <a href="https://www.linkedin.com/in/elvis-kessy-795b55307" target="_blank">LinkedIn</a></p>
+
+      <!-- Contact form (non-functional) -->
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer section -->
+  <footer>
+    <p>&copy; 2025 Elvis Kessy. Built with HTML & CSS. Dashboard Layout with Animation and Transitions.</p>
+  </footer>
+
+</body>
+</html>
